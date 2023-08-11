@@ -5,7 +5,7 @@ namespace Bulky.Models
 {
     public class Category
     {
-        //[Key]
+        [Key]
         public int Id { get; set; }
 
         [Required]

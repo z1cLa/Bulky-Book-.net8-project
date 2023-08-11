@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bulky.DataAccess.Repository
 {
-    public interface class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
 
         internal DbSet<T> dbSet;
