@@ -35,9 +35,7 @@ namespace Bulky.DataAccess.Repository
 
         public IEnumerable<T> GetAll()
         {
-            var typeOfCat = typeof(T).FullName;
-            //var getdata = _db.Categories.ToList();
-            var query = dbSet.ToList();
+            var query = dbSet;
             return query.ToList();
         }
 

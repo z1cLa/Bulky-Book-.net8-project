@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230811112353_addForeignKeyForCategoryProductRelation2")]
-    partial class addForeignKeyForCategoryProductRelation2
+    [Migration("20230814073715_addForeignKey")]
+    partial class addForeignKey
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
