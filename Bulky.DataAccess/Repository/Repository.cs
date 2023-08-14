@@ -31,16 +31,16 @@ namespace Bulky.DataAccess.Repository
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
-            /*
-               if (string.IsNullOrEmpty(includeProperties))
-            {
-                foreach (var includeProp in includeProperties
-                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProp);
-                }
-            }
-            */
+            
+               if (!string.IsNullOrEmpty(includeProperties))
+               {
+                    foreach (var includeProp in includeProperties
+                        .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        query = query.Include(includeProp);
+                    }
+               }
+            
             return query.FirstOrDefault();
         }
 
