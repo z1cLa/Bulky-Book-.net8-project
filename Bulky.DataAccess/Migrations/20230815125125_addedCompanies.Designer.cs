@@ -4,6 +4,7 @@ using Bulky.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230815125125_addedCompanies")]
+    partial class addedCompanies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +103,7 @@ namespace Bulky.DataAccess.Migrations
                             Id = 1,
                             City = "Tech City",
                             Name = "Tech Solution",
-                            Phone = "6669990000",
                             PostalCode = "12121",
-                            State = "IL",
                             StreetAdress = "123 Tech St"
                         },
                         new
@@ -110,9 +111,7 @@ namespace Bulky.DataAccess.Migrations
                             Id = 2,
                             City = "Vid City",
                             Name = "Vivid Books",
-                            Phone = "1112220000",
                             PostalCode = "696969",
-                            State = "IL",
                             StreetAdress = "999 Vid St"
                         },
                         new
@@ -120,9 +119,7 @@ namespace Bulky.DataAccess.Migrations
                             Id = 3,
                             City = "Lala Land",
                             Name = "Readers Club",
-                            Phone = "1113335550",
                             PostalCode = "113355",
-                            State = "NY",
                             StreetAdress = "999 Main St"
                         });
                 });
@@ -477,10 +474,6 @@ namespace Bulky.DataAccess.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CompanyId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -493,8 +486,6 @@ namespace Bulky.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -559,17 +550,6 @@ namespace Bulky.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Bulky.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("Bulky.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }
